@@ -1,0 +1,8 @@
+Begin at : 18.0 cm
+
+	
+Speed:		0.005
+Distance:	4.0
+
+
+Each cycle (up and down) takes 26:40 minutes

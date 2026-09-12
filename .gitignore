@@ -1,0 +1,62 @@
+# OS / editor
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+.vscode/
+.idea/
+
+# Raw / binary PET data (often multi-GB)
+*.bin
+*.dat
+*.ldat
+*.raw
+*.cdf
+*.cdh
+*.img
+*.hdr
+*.nii
+*.nii.gz
+*.h5
+*.hdf5
+*.npz
+*.root
+*.pack
+
+# Medical imaging / archives that are often large
+*.dcm
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# Large rendered media
+*.gif
+
+# Coincidence / raw text dumps (often tens of MB each)
+*_coinc.txt
+*_coinc.dat
+
+# Common data dump directories
+**/data/
+**/Data/
+**/Old Data/
+**/Misc Data/
+**/ToUpload/
+**/CalibrationDataPreparer/
+**/normfactors/
+**/gifs/
+**/Anthropomorphic_Phantom_In_Scanner/
+
+# Heavy experiment / reconstruction trees (code lives outside these)
+MDA_03162026/
+MDA_04112026/
+MDA_10112025/
+TPPT2026/
+TPPTvis (Copy)/
+AMIDE/
+CASToR Master/
+
+# Nested git repo — push from inside TPPTvis/ separately
+TPPTvis/

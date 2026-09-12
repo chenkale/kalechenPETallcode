@@ -1,0 +1,14 @@
+For any coincidence event, there is a timing error contributed by both detectors, which we treat as an additive offset for each individual channel in the scanner. We need to determine these values in order to properly align a coincidence event along its LOR. To do this, we produce a uniform plane of activity in the central plane between the two scanner arcs by moving a Ge68 line source at constant speed through the entire field of view. This way, the expected location of the time difference distribution along each LOR is known. The events in each channel are filtered on photopeak, then passed through the calibration algorithm:
+
+1. Beginning in the left arc, collect time differences for each channel.
+2. For each channel, fit time difference histogram as the sum of two Gaussian peaks, and compute mean time difference as the midpoint between the two peak locations. The offset in each channel is related to the physical location of the channel in each module, which we observe can be assigned into two groups across all modules, hence the double Gaussian.
+3. Compute the time offset for this iteration as the difference between the mean time difference and the expected time difference due to geometry, as the intersection of the LOR with the plane of activity is not at the midpoint for asymmetric channel pairs.
+4. Update total time offset for this channel by adding the computed time offset for this iteration.
+4. Repeat steps 1-4 for all channels in the left arc, then for all channels in the right arc.
+5. Alternate between left and right arcs for many iterations until the differences converge.
+
+The calibration algorithm is iterative in design to alternate offset updates between the left and right arcs. As a channel is updated, it shifts the time differences distributions of all participating LORs by the same value, which will not correctly align the distributions in each individual LOR. However, when all channels in one arc are corrected in an iteration, each channel in the opposite arc will see a shift caused by the averaged corrections in the updated arc, which together reflect the offset behavior of each channel in the opposite arc. This requires an iterative approach which repeatedly corrects the average behavior from all channels in the opposite arc, eventually converging onto asymptotic offset values for each channel, and showing the two Gaussians coalesce.
+
+
+
+

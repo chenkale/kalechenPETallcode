@@ -1,0 +1,13 @@
+make histogram with number of LORs and number of PP LORs
+x axis number of LORs
+y axis number of crystals with those LORs
+do it for total and for PP LORs
+
+Use photopeak window instead
+Try to run without a cut
+
+number of events in pp vs number of events in ce
+sanity check of code against minipet data line source run
+show histogram of photopeak counts for each channel (should be one bin for the same file after normalization)
+run against other files to show that the width gets narrower for the histogram
+check on full scanner heatmaps

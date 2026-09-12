@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#or operator
+# grep '^262383\|^262476' Center_Source_coinc_head.txt > test.txt
+#range of numbers
+# grep '262[0-9][0-9][0-9]$' Center_Source_coinc_head.txt > test.txt
+#fifth column
+# grep '^(?:[^\t]+\t{4}(279524))\b' Center_Source_coinc_head.txt > test.txt
+
+#USE THIS ONE
+#subdividing by slave ID for port 0
+# # #slave0
+# awk -F '\t' '$10 < 4096' Center_Source_8-2_coinc.dat > Center_Source_slave0.txt
+# #slave1
+# awk -F '\t' '$10 < 8192 && $10 >= 4096' Center_Source_8-2_coinc.dat > Center_Source_slave1.txt
+# #slave2
+# awk -F '\t' '$10 < 12288 && $10 >= 8192' Center_Source_8-2_coinc.dat > Center_Source_slave2.txt
+
+awk -F '\t' '$10 < 64  && $10 >= 0' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip0.txt
+awk -F '\t' '$10 < 128  && $10 >= 64' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip1.txt
+awk -F '\t' '$10 < 192  && $10 >= 128' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip2.txt
+awk -F '\t' '$10 < 256  && $10 >= 192' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip3.txt
+awk -F '\t' '$10 < 320  && $10 >= 256' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip4.txt
+awk -F '\t' '$10 < 384  && $10 >= 320' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip5.txt
+awk -F '\t' '$10 < 448  && $10 >= 384' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip6.txt
+awk -F '\t' '$10 < 512  && $10 >= 448' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip7.txt
+awk -F '\t' '$10 < 576  && $10 >= 512' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip8.txt
+awk -F '\t' '$10 < 640  && $10 >= 576' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip9.txt
+awk -F '\t' '$10 < 704  && $10 >= 640' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip10.txt
+awk -F '\t' '$10 < 768  && $10 >= 704' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip11.txt
+awk -F '\t' '$10 < 832  && $10 >= 768' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip12.txt
+awk -F '\t' '$10 < 896  && $10 >= 832' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip13.txt
+awk -F '\t' '$10 < 960  && $10 >= 896' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip14.txt
+awk -F '\t' '$10 < 1024  && $10 >= 960' CW2PRW1POW10_coinc.dat > Center_Source_Slave0Chip15.txt
+awk -F '\t' '$10 < 4160  && $10 >= 4096' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip0.txt
+awk -F '\t' '$10 < 4224  && $10 >= 4160' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip1.txt
+awk -F '\t' '$10 < 4288  && $10 >= 4224' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip2.txt
+awk -F '\t' '$10 < 4352  && $10 >= 4288' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip3.txt
+awk -F '\t' '$10 < 4416  && $10 >= 4352' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip4.txt
+awk -F '\t' '$10 < 4480  && $10 >= 4416' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip5.txt
+awk -F '\t' '$10 < 4544  && $10 >= 4480' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip6.txt
+awk -F '\t' '$10 < 4608  && $10 >= 4544' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip7.txt
+awk -F '\t' '$10 < 4672  && $10 >= 4608' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip8.txt
+awk -F '\t' '$10 < 4736  && $10 >= 4672' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip9.txt
+awk -F '\t' '$10 < 4800  && $10 >= 4736' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip10.txt
+awk -F '\t' '$10 < 4864  && $10 >= 4800' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip11.txt
+awk -F '\t' '$10 < 4928  && $10 >= 4864' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip12.txt
+awk -F '\t' '$10 < 4992  && $10 >= 4928' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip13.txt
+awk -F '\t' '$10 < 5056  && $10 >= 4992' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip14.txt
+awk -F '\t' '$10 < 5120  && $10 >= 5056' CW2PRW1POW10_coinc.dat > Center_Source_Slave1Chip15.txt
+awk -F '\t' '$10 < 8256  && $10 >= 8192' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip0.txt
+awk -F '\t' '$10 < 8320  && $10 >= 8256' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip1.txt
+awk -F '\t' '$10 < 8384  && $10 >= 8320' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip2.txt
+awk -F '\t' '$10 < 8448  && $10 >= 8384' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip3.txt
+awk -F '\t' '$10 < 8512  && $10 >= 8448' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip4.txt
+awk -F '\t' '$10 < 8576  && $10 >= 8512' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip5.txt
+awk -F '\t' '$10 < 8640  && $10 >= 8576' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip6.txt
+awk -F '\t' '$10 < 8704  && $10 >= 8640' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip7.txt
+awk -F '\t' '$10 < 8768  && $10 >= 8704' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip8.txt
+awk -F '\t' '$10 < 8832  && $10 >= 8768' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip9.txt
+awk -F '\t' '$10 < 8896  && $10 >= 8832' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip10.txt
+awk -F '\t' '$10 < 8960  && $10 >= 8896' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip11.txt
+awk -F '\t' '$10 < 9024  && $10 >= 8960' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip12.txt
+awk -F '\t' '$10 < 9088  && $10 >= 9024' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip13.txt
+awk -F '\t' '$10 < 9152  && $10 >= 9088' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip14.txt
+awk -F '\t' '$10 < 9216  && $10 >= 9152' CW2PRW1POW10_coinc.dat > Center_Source_Slave2Chip15.txt

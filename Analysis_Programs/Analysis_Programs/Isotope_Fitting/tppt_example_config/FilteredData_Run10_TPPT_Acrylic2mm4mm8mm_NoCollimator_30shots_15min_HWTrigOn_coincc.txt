@@ -1,0 +1,12 @@
+--spill_time_end 0
+-rl 900
+-n 225
+-fi C10, C11, N13, O15
+--initial_fit_params 1800,600,.001,3600
+-c z
+-g /home/michaelgajda/mda/geometry/TPPT_Scanner_map.txt
+
+--in_dir /home/michaelgajda/thesis_work/tppt_window
+-d FilteredData_Run10_TPPT_Acrylic2mm4mm8mm_NoCollimator_30shots_15min_HWTrigOn_coincc.dat
+-o /home/michaelgajda/thesis_work/isotope_fitting_plots/FilteredData_Run10_TPPT_Acrylic2mm4mm8mm_NoCollimator_30shots_15min_HWTrigOn_coincc
+-group 4
