@@ -31,6 +31,9 @@ __pycache__/
 *.tgz
 *.7z
 
+# Other
+*.tsv
+
 # Large rendered media
 *.gif
 
