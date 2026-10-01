@@ -8,39 +8,24 @@ import os
 from matplotlib.gridspec import GridSpec
 from scipy.optimize import curve_fit
 
-#names = ['0932',
-#         '0923',
-#         '0916',
-#         '1732',
-#         '1723',
-#         '1716',
-#         '2532',
-#         '2523',
-#         '2516']
-names = ['pr0', 'pR0', 'pR1', 'pR2', 'pR3', 'pR4', 'pR5', 'pR6', 'pR7']
+names = ['0932p', '0923p', '0916p', '1732p', '1723p', '1716p', '2532p', '2523p', '2516p']
+#names = ['pr0', 'pR0', 'pR1', 'pR2', 'pR3', 'pR4', 'pR5', 'pR6', 'pR7']
 #names = ['pra0', 'pRa0', 'pRa1', 'pRa2', 'pRa3', 'pRa4', 'pRa5', 'pRa6', 'pRa7']
 #names = ['hcircpgd0','hcircpgd1','hcircpgd2','hcircpgd3','hcircpgd4','hcircpgd5','hcircpgd6','hcircpgd7']
 
-tag = '1ns'
-#centers = [(-78, 73, 0),
-#          (3, 76, 0),
-#          (75, 73, 0),
-#          (-78, 0, 0),
-#          (4, 0, 0),    
-#          (73, -2, 0),
-#          (-77, -78, 0),
-#          (4, -78, 0),
-#          (74, -76, 0)]
-centers = [(-2, 11, 0), 
-        (-3, 96, 0), 
-        (-71, 68, 0), 
-        (-99, 0, 0), 
-        (-71, -69, 0),
-        (-3, -97, 0),
-        (65,-70, 0),
-        (93, -2, 0),
-        (66, 67, 0)
-]
+#tag = '1ns'
+tag = '1'
+centers = [(-78, -73, 0),(3, -76, 0),(75, -73, 0),(-78, 0, 0),(4, 0, 0),(73, 2, 0),(-77, 78, 0),(4, 78, 0),(74, 76, 0)]
+#centers = [(-2, 11, 0), 
+#        (-3, 96, 0), 
+#        (-71, 68, 0), 
+#        (-99, 0, 0), 
+#        (-71, -69, 0),
+#        (-3, -97, 0),
+#        (65,-70, 0),
+#        (93, -2, 0),#
+#        (66, 67, 0)
+#]
 #centers = [(0, 120, 0), (-85, 85, 0), (-120, 0, 0), (-85, -85, 0), (0, -120, 0), (85, -85, 0), (120, 0, 0), (85, 85, 0)]
 
 
@@ -50,14 +35,14 @@ img_path = f'/home/kale-chen/Documents/CASToR/images/'
 #iterations = range(1, 31)
 iterations = range(1, 2)
 
-save = True
+save = False
 fit = True
 out_path = f'/home/kale-chen/Documents/PET/Sensitivity Normalization/writeup/plots/spatialresolution/'
 csv_path = f'/home/kale-chen/Documents/PET/Spatial Resolution/Data2/resolutionsiterated.csv'
 mode = 'MLEM'
 
-#dim = (64, 64, 64)
-#vox = (0.5, 0.5, 0.5)
+dim = (64, 64, 64)
+vox = (1, 1, 1)
 if '2' in tag:
     dim = (10, 10, 50)
     vox = (2, 2, 2)

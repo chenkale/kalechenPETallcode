@@ -7,9 +7,12 @@ from tqdm import tqdm
 from scipy.optimize import curve_fit
 #import pandas as pd
 
-names = ['hcenter', 'mcenter', 'hcirc', 'hvert', 'pointsr', 'pointsR', 'htof']
-
-data_dir = '/home/kale-chen/Documents/PET/TPPT2026/data/'
+#names = ['hcenter', 'mcenter', 'hcirc', 'hvert', 'pointsr', 'pointsR', 'htof']
+#names = ['0932','0923','0916','1732','1723','1716','2532','2523','2516']
+#data_dir = '/home/kale-chen/Documents/PET/TPPT2026/data/'
+#data_dir = '/home/kale-chen/Documents/PET/Spatial Resolution/Data2/'
+data_dir = '/home/kale-chen/Documents/PET/MiniPET/TPPTmoduletesting/'
+names = ['goodT0', 'goodT1', 'badT0', 'badT1']
 chunksize = 64
 cut_range = 2.5
 

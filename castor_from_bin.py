@@ -3,9 +3,9 @@
 '''
 Paths need to be specified
 '''
-#names = ['0932','0923','0916','1732','1723','1716','2532','2523','2516']
+names = ['0932p','0923p','0916p','1732p','1723p','1716p','2532p','2523p','2516p']
 #names = ['hcenterpgd','mcenterpgd']
-names = ['pr0', 'pR0', 'pR1', 'pR2', 'pR3', 'pR4', 'pR5', 'pR6', 'pR7']
+#names = ['pr0', 'pR0', 'pR1', 'pR2', 'pR3', 'pR4', 'pR5', 'pR6', 'pR7']
 #names = ['pra0', 'pRa0', 'pRa1', 'pRa2', 'pRa3', 'pRa4', 'pRa5', 'pRa6', 'pRa7']
 #names = ['tofpair1', 'tofpair2', 'tofpair3', 'tofpair4', 'tofpair5']
 #names = ['htofpgd0', 'htofpgd1', 'htofpgd2', 'htofpgd3', 'htofpgd4', 'htofpgd5']
@@ -13,15 +13,16 @@ names = ['pr0', 'pR0', 'pR1', 'pR2', 'pR3', 'pR4', 'pR5', 'pR6', 'pR7']
 #names = ['hcenterpgd']
 #names = ['hcircpgd0','hcircpgd1','hcircpgd2','hcircpgd3','hcircpgd4','hcircpgd5','hcircpgd6','hcircpgd7']
 out_names = [''] * len(names) # Use to specify output name, if left blank, will use name
-tag = '1ns'
-#centers = [(-78, 73, 0),(3, 76, 0),(75, 73, 0),(-78, 0, 0),(4, 0, 0),(73, -2, 0),(-77, -78, 0),(4, -78, 0),(74, -76, 0)]
-centers = [(-2, 11, 0),(-3, 96, 0),(-71, 68, 0),(-99, 0, 0),(-71, -69, 0),(-3, -97, 0),(65,-70, 0),(93, -2, 0),(66, 67, 0)]
+#tag = '1ns'
+tag = '1s'
+centers = [(-78, -73, 0),(3, -76, 0),(75, -73, 0),(-78, 0, 0),(4, 0, 0),(73, 2, 0),(-77, 78, 0),(4, 78, 0),(74, 76, 0)]
+#centers = [(-2, 11, 0),(-3, 96, 0),(-71, 68, 0),(-99, 0, 0),(-71, -69, 0),(-3, -97, 0),(65,-70, 0),(93, -2, 0),(66, 67, 0)]
 #centers = [(40, 0, 0), (40, 0, 0), (40, 0, 0), (40, 0, 0), (40, 0, 0), (40, 0, 0)]
 #centers = [(0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0)]
 #centers = [(0, 120, 0), (-85, 85, 0), (-120, 0, 0), (-85, -85, 0), (0, -120, 0), (85, -85, 0), (120, 0, 0), (85, 85, 0)]
 #centers = [(120, 50, 0)]
-#data_dir = '/home/kale-chen/Documents/PET/Spatial Resolution/Data2/'
-data_dir = '/home/kale-chen/Documents/PET/TPPT2026/data/'
+data_dir = '/home/kale-chen/Documents/PET/Spatial Resolution/Data2/'
+#data_dir = '/home/kale-chen/Documents/PET/TPPT2026/data/'
 
 # Flags and processing
 autoTag = True
@@ -63,7 +64,7 @@ maskmodules = False
 #vox = (1, 1, 1)
 #dim = (10, 10, 50)
 #vox = (2, 2, 2)
-dim = (360, 360, 110)
+#dim = (360, 360, 110)
 #vox = (1, 1, 1)
 #dim = (180,180, 55)
 #vox = (2, 2, 2)
@@ -84,7 +85,7 @@ post = 'gaussian,0,0,0'
 total_duration = 300
 frame_duration = 30
 
-num_iterations = 3
+num_iterations = 1
 
 # Preprocessing
 time_offsets_file = '/home/kale-chen/Documents/PET/TimeCalibration/CalibrationDataPreparer/tsvs/time_offset_calibrationit10.tsv'
@@ -93,7 +94,7 @@ time_offsets_file = '/home/kale-chen/Documents/PET/TimeCalibration/CalibrationDa
 stride = 1
 
 # For now define guess for number of columns
-guess = 4
+guess = 6
 
 '''
 Code begins here
