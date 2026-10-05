@@ -22,6 +22,7 @@ __pycache__/
 *.npz
 *.root
 *.pack
+*.rawf
 
 # Medical imaging / archives that are often large
 *.dcm

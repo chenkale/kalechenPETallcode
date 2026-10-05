@@ -1,0 +1,9 @@
+# Absolute Sensor ID format : portID_slaveID_moduleID_SensorID
+# Sensor ID is:
+# A0 - Sensor on FEB/A (ASIC 0) connected to port J1 of the FEB/I
+# A1 - Sensor on FEB/A (ASIC 1) connected to port J2 of the FEB/I
+# S0 - Sensor on FEB/S (SIPM) connected to port J1 of the FEB/I
+# S1 - Sensor on FEB/S (SIPM) connected to port J2 of the FEB/I
+#
+#DAQ timestamp	System time	0_0_0_A0	0_0_0_S0	0_0_0_A1	0_0_0_S1	0_0_7_A0	0_0_7_S0	0_0_7_A1	0_0_7_S1
+6753737874	1790725273	24.27	-169.13	25.50	-168.34	25.11	-166.78	26.57	-165.47
