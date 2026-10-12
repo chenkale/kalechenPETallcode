@@ -9,13 +9,15 @@ from matplotlib.gridspec import GridSpec
 from scipy.optimize import curve_fit
 
 names = ['0932p', '0923p', '0916p', '1732p', '1723p', '1716p', '2532p', '2523p', '2516p']
+#names = ['0932', '0923', '0916', '1732', '1723', '1716', '2532', '2523', '2516']
 #names = ['pr0', 'pR0', 'pR1', 'pR2', 'pR3', 'pR4', 'pR5', 'pR6', 'pR7']
 #names = ['pra0', 'pRa0', 'pRa1', 'pRa2', 'pRa3', 'pRa4', 'pRa5', 'pRa6', 'pRa7']
 #names = ['hcircpgd0','hcircpgd1','hcircpgd2','hcircpgd3','hcircpgd4','hcircpgd5','hcircpgd6','hcircpgd7']
 
 #tag = '1ns'
-tag = '1'
-centers = [(-78, -73, 0),(3, -76, 0),(75, -73, 0),(-78, 0, 0),(4, 0, 0),(73, 2, 0),(-77, 78, 0),(4, 78, 0),(74, 76, 0)]
+tag = '5'
+zcenter = 0
+centers = [(-78, -73, zcenter),(3, -76, zcenter),(75, -73, zcenter),(-78, 0, zcenter),(4, 0, zcenter),(73, 2, zcenter),(-77, 78, zcenter),(4, 78, zcenter),(74, 76, zcenter)]
 #centers = [(-2, 11, 0), 
 #        (-3, 96, 0), 
 #        (-71, 68, 0), 
@@ -24,22 +26,22 @@ centers = [(-78, -73, 0),(3, -76, 0),(75, -73, 0),(-78, 0, 0),(4, 0, 0),(73, 2, 
 #        (-3, -97, 0),
 #        (65,-70, 0),
 #        (93, -2, 0),#
-#        (66, 67, 0)
+#        (66, 67, 0)    
 #]
 #centers = [(0, 120, 0), (-85, 85, 0), (-120, 0, 0), (-85, -85, 0), (0, -120, 0), (85, -85, 0), (120, 0, 0), (85, 85, 0)]
 
 
-extraname = ''
+extraname = 'z'
 
 img_path = f'/home/kale-chen/Documents/CASToR/images/'
 #iterations = range(1, 31)
 iterations = range(1, 2)
 
-save = False
+save = True
 fit = True
 out_path = f'/home/kale-chen/Documents/PET/Sensitivity Normalization/writeup/plots/spatialresolution/'
-csv_path = f'/home/kale-chen/Documents/PET/Spatial Resolution/Data2/resolutionsiterated.csv'
-mode = 'MLEM'
+csv_path = f'/home/kale-chen/Documents/PET/Spatial Resolution/Data2/resolutions1.csv'
+mode = 'OSEM 16'
 
 dim = (64, 64, 64)
 vox = (1, 1, 1)
@@ -49,8 +51,11 @@ if '2' in tag:
 elif '1' in tag:
     dim = (32, 32, 100)
     vox = (1, 1, 1)
+elif '5' in tag:
+    dim = (64, 64, 200)
+    vox = (0.5, 0.5, 0.5)
 #wsize = (dim[0] - 2, dim[1] - 2, int(5 / vox[2])) # Window size in voxels, centered on viewcenter
-wsize = (dim[0], dim[1], 10)
+wsize = (dim[0], dim[1], 200)
 
 tick_interval = wsize[0]*vox[0] / 8 # Tick interval in mm
 
@@ -116,7 +121,7 @@ for iteration in iterations:
         # x histogram
         x_bins = np.linspace(extentx[0] - vox[0], extentx[1] + vox[0], wsize[0]+3)
         bin_centers = 0.5 * (x_bins[:-1] + x_bins[1:])
-        axxhist.step(bin_centers, extendEdges(imgx), color='red', where='mid')
+        axxhist.step(bin_centers, extendEdges(imgx), color='black', where='mid')
         bin_centers = bin_centers[1:-1] # Adjustment for resolution calculations
         if fit:
             # FWHM and FWTM calculations
@@ -176,7 +181,7 @@ for iteration in iterations:
         y_bins = np.linspace(extenty[0] - vox[1], extenty[1] + vox[1], wsize[1]+3)
         bin_centers = 0.5 * (y_bins[:-1] + y_bins[1:]) + vox[1] / 2
         bin_centers = bin_centers[::-1]
-        axyhist.step(extendEdges(imgy), bin_centers, color='red', where='pre')
+        axyhist.step(extendEdges(imgy), bin_centers, color='black', where='pre')
         bin_centers = bin_centers[1:-1] - vox[1] / 2 # Adjustment for resolution calculations
         if fit:
             # FWHM and FWTM calculations
@@ -236,7 +241,7 @@ for iteration in iterations:
             print(FWHMyL, FWHMyR, FWTMyL, FWTMyR)
         # Corner infobox
         infobox.set_axis_off()
-        infobox.text(0.5, 0.7, f'hmap sum:\n{np.sum(imgxy[sumtrim:imgxy.shape[0]-sumtrim, sumtrim:imgxy.shape[1]-sumtrim]):.4f}', fontsize='small', ha='center', va='center')
+        #infobox.text(0.5, 0.7, f'hmap sum:\n{np.sum(imgxy[sumtrim:imgxy.shape[0]-sumtrim, sumtrim:imgxy.shape[1]-sumtrim]):.4f}', fontsize='small', ha='center', va='center')
         hmapsums.append(np.sum(imgxy[sumtrim:imgxy.shape[0]-sumtrim, sumtrim:imgxy.shape[1]-sumtrim]))
         # Tick handling
         plt.setp(axxhist.get_xticklabels(), visible=False)
@@ -248,21 +253,22 @@ for iteration in iterations:
         plt.setp(axyhist.get_yticklabels(), visible=False)
         plt.setp(axyhist.get_yticklines(), visible=False)
 
-        fig.suptitle(f'{name}, z-region ({(pixextentz[0] - dim[2]/2)*vox[2]}, {(pixextentz[1] - dim[2]/2)*vox[2]}) mm, it {iteration}')
-
+        titletext = f'{name}{tag}{extraname}, z-region ({(pixextentz[0] - dim[2]/2)*vox[2]}, {(pixextentz[1] - dim[2]/2)*vox[2]}) mm, it {iteration}'
+        #fig.suptitle(titletext)
 
         if save:
-            plt.savefig(f'/home/kale-chen/Documents/PET/Sensitivity Normalization/images/{name}{tag}.png')
+            plt.savefig(f'/home/kale-chen/Documents/PET/Spatial Resolution/images/{titletext}.pdf', format='pdf', dpi=300)
+       
 
-            if not os.path.exists(out_path):
-                os.mkdir(out_path)
-            plt.savefig(os.path.join(out_path, f'{name}{tag}_xy_it{iteration}_spatialresolution{extraname}.pdf'), format='pdf', dpi=300)
+            #if not os.path.exists(out_path):
+                #os.mkdir(out_path)
+            #plt.savefig(os.path.join(out_path, f'{titletext}.pdf'), format='pdf', dpi=300)
        
             if not os.path.exists(csv_path):
                 with open(csv_path, 'w') as f:
                     f.write('name,tag,iteration,mode,FWTMx,FWHMx,FWTMy,FWHMy\n')
             with open(csv_path, 'a') as f:
-                f.write(f'{name},{tag},{iteration},{mode},{np.abs(FWTMxR - FWTMxL):.3f},{np.abs(FWHMxR - FWHMxL):.3f},{np.abs(FWTMyR - FWTMyL):.3f},{np.abs(FWHMyR - FWHMyL):.3f}\n')
+                f.write(f'{name},{tag+extraname},{iteration},{mode},{np.abs(FWTMxR - FWTMxL):.4f},{np.abs(FWHMxR - FWHMxL):.4f},{np.abs(FWTMyR - FWTMyL):.4f},{np.abs(FWHMyR - FWHMyL):.4f}\n')
         else:
             plt.show()
 print(imgxy.shape, imgxy[sumtrim:-sumtrim, sumtrim:-sumtrim].shape)

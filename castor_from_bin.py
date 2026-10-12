@@ -4,6 +4,7 @@
 Paths need to be specified
 '''
 names = ['0932p','0923p','0916p','1732p','1723p','1716p','2532p','2523p','2516p']
+names = ['0932','0923','0916','1732','1723','1716','2532','2523','2516']
 #names = ['hcenterpgd','mcenterpgd']
 #names = ['pr0', 'pR0', 'pR1', 'pR2', 'pR3', 'pR4', 'pR5', 'pR6', 'pR7']
 #names = ['pra0', 'pRa0', 'pRa1', 'pRa2', 'pRa3', 'pRa4', 'pRa5', 'pRa6', 'pRa7']
@@ -14,7 +15,7 @@ names = ['0932p','0923p','0916p','1732p','1723p','1716p','2532p','2523p','2516p'
 #names = ['hcircpgd0','hcircpgd1','hcircpgd2','hcircpgd3','hcircpgd4','hcircpgd5','hcircpgd6','hcircpgd7']
 out_names = [''] * len(names) # Use to specify output name, if left blank, will use name
 #tag = '1ns'
-tag = '1s'
+tag = '1'
 centers = [(-78, -73, 0),(3, -76, 0),(75, -73, 0),(-78, 0, 0),(4, 0, 0),(73, 2, 0),(-77, 78, 0),(4, 78, 0),(74, 76, 0)]
 #centers = [(-2, 11, 0),(-3, 96, 0),(-71, 68, 0),(-99, 0, 0),(-71, -69, 0),(-3, -97, 0),(65,-70, 0),(93, -2, 0),(66, 67, 0)]
 #centers = [(40, 0, 0), (40, 0, 0), (40, 0, 0), (40, 0, 0), (40, 0, 0), (40, 0, 0)]
@@ -76,6 +77,9 @@ if '2' in tag:
 elif '1' in tag:
     dim = (32, 32, 100)
     vox = (1, 1, 1)
+elif '5' in tag:
+    dim = (64, 64, 200)
+    vox = (0.5, 0.5, 0.5)
 
 psf = 'gaussian,0,0,0'
 post = 'gaussian,0,0,0'
@@ -352,6 +356,7 @@ except FileExistsError:
     pass
 start = time.time()
 times = []
+num_events = []
 for name, out_name, center in zip(names, out_names, centers):
     realcenter = (center[0] * -1, center[1] * -1, center[2])
     data_file = os.path.join(data_dir, name + '.bin')
@@ -360,9 +365,11 @@ for name, out_name, center in zip(names, out_names, centers):
     num_cols = guess_num_cols(data_file)
     num_rows = make_cdf(data_file, out_name, num_cols)
     make_cdh(num_rows, out_name, duration = total_duration, start_time = 0)
+    num_events.append(num_rows)
     make_sens_img(out_name, center)
     senshdr = make_sens_hdr(out_name)
     castor_recon(out_name, realcenter, senshdr = None if not usesens else senshdr)
     times.append(round(time.time() - start, 1))
 print(f'Times = {times}')
+print(f'Num events = {num_events}')
 
